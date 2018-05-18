@@ -1,0 +1,54 @@
+DROP TABLE IF EXISTS tb_user;
+CREATE TABLE tb_user (
+	id INT NOT NULL AUTO_INCREMENT,
+	userName VARCHAR(40),
+	password VARCHAR(100),
+	email VARCHAR(40),
+	phone VARCHAR(40),
+	roleName VARCHAR(40),
+	PRIMARY KEY(id)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+<form action="save" method="post">
+		<input type="hidden" name="id" value="${requestScope.returnUser.id }"/>
+		用户名:<input type="text" name="username" value="${requestScope.returnUser.username}"/><br>
+		密码:<input type="text" name="password" value="${requestScope.returnUser.password }"/><br>
+		邮件:<input type="text" name="email" value="${requestScope.returnUser.email }"/><br>
+		联系电话:<input type="text"name="phone"  value="${requestScope.returnUser.phone }"/><br>
+		职位:<%-- <input type="text" name="rolename" value="${requestScope.returnUser.rolename }"/><br> --%>
+			<select id="rolename" name="rolename">
+				 <option>请选择职位</option> 
+           <option value="客户经理">销售经理</option>
+           <option value="高管">高管</option>
+           <option value="销售主管">销售主管</option>  
+		   <option value="系统管理员">系统管理员</option>
+			</select><br>
+		<input type="submit" value="提交"/>
+	</form>
+	
+	mysql> use db_ssm2;
+Database changed
+mysql> desc tb_user;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| userName | varchar(40)  | YES  |     | NULL    |                |
+| password | varchar(100) | YES  |     | NULL    |                |
+| email    | varchar(40)  | YES  |     | NULL    |                |
+| phone    | varchar(40)  | YES  |     | NULL    |                |
+| roleName | varchar(40)  | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+6 rows in set (0.03 sec)
+
+mysql> select *from tb_user;
++----+----------+----------+--------------------+-------+------------+
+| id | userName | password | email              | phone | roleName   |
++----+----------+----------+--------------------+-------+------------+
+|  1 | 李白     | 1234     | libai@qq.com       | 10086 | 客户经理   |
+|  2 | 李清照   | 1234     | liqingzhao@163.com | 10087 | 高管       |
+|  3 | 杜甫     | 1234     | dufu@163.com       | 10088 | 销售主管   |
+|  4 | 岑参     | 1234     | censhen@163.com    | 10088 | 系统管理员 |
+|  5 | 陈子昂   | 1234     | chenziang@qq.com   | 10099 | 高管       |
++----+----------+----------+--------------------+-------+------------+
+5 rows in set (0.05 sec)
